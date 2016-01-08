@@ -3,8 +3,7 @@
  * Uploader .
  * php class for file upload
  * $uploader = new Uploader ; 
- * $uploader->start("file") /
- *
+ * $uploader->start("file") 
  */
 namespace itx ; 
 class Uploader
@@ -45,7 +44,6 @@ class Uploader
         }
         else
         {
-			
             foreach($_FILES[$input]["tmp_name"] as $key=>$value)
             {
 				if($allFilled)
@@ -60,11 +58,7 @@ class Uploader
 					return !empty($_FILES[$input]["tmp_name"][$key]) || is_uploaded_file($_FILES[$input]["tmp_name"][$key]) ;
 				}
                 
-            }
-
-			
-	
-			
+			}
             return $allFilled ? (count($data) == count($_FILES[$input]["tmp_name"])) : false  ; 
         }
     }
@@ -409,22 +403,18 @@ class Uploader
 	{
 		if(isset($settings["replaceNotAllowedChars"]) && $settings["replaceNotAllowedChars"])
 		{
-			
 			$file_info = pathinfo($file) ;
 			return strtolower(str_replace($file_info["filename"] , str_replace($settings["notAllowedChars"] , $settings["replaceWith"] , $file_info["filename"]) , $file));
 		}
 		else
 		{
-			
 			return $file ; 
 		}
-		
 	}
 	private function renameFile($file)
 	{
 		$file_info = pathinfo($file) ;
 		return strtolower(str_replace($file_info["filename"] , $file_info["filename"]."-".mt_rand() , $file));
-		
 	}
 }
 ?>
